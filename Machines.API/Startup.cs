@@ -1,5 +1,8 @@
+using AutoMapper;
+using Machines.BL;
 using Machines.DAL;
 using Machines.Models;
+using Machines.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,10 +31,19 @@ namespace Machines.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MachinesContext>(opt => opt.UseInMemoryDatabase(Constants.DbNames.InMemoryDbName));
             services.AddControllers();
+            services.AddScoped<IMachineService, MachineService>();
             services.AddSwaggerGen();
 
-            services.AddDbContext<MachinesContext>(opt => opt.UseInMemoryDatabase(Constants.DbNames.InMemoryDbName));
+            // Auto Mapper Configurations
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

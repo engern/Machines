@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Machines.BL\Machines.BL.csproj" />
-    <ProjectReference Include="..\Machines.DAL\Machines.DAL.csproj" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Machines.Models\Machines.Models.csproj" />
   </ItemGroup>
 

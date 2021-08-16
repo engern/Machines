@@ -6,7 +6,7 @@ namespace Machines.Models.VM
 {
     public class MachineGet
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
     }
 }

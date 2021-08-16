@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.5" />
@@ -13,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Machines.BL\Machines.BL.csproj" />
     <ProjectReference Include="..\Machines.DAL\Machines.DAL.csproj" />
+    <ProjectReference Include="..\Machines.Services\Machines.Services.csproj" />
   </ItemGroup>
 
 

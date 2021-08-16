@@ -1,4 +1,5 @@
 ﻿using Machines.Models.VM;
+using Machines.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,11 +15,13 @@ namespace Machines.API.Controllers
     [Route("[controller]")]
     public class MachineController : ControllerBase
     {       
-        private readonly ILogger<MachineController> _logger;        
+        private readonly ILogger<MachineController> _logger;
+        private readonly IMachineService _machineService;
 
-        public MachineController(ILogger<MachineController> logger)
+        public MachineController(ILogger<MachineController> logger, IMachineService machineService)
         {
             _logger = logger;
+            _machineService = machineService;
         }
 
         [HttpGet]
@@ -26,7 +29,7 @@ namespace Machines.API.Controllers
         {
             try
             {
-                return StatusCode((int)HttpStatusCode.OK, null);
+                return StatusCode((int)HttpStatusCode.OK, _machineService.GetAll());
             }
             catch (Exception ex)
             {
@@ -36,11 +39,11 @@ namespace Machines.API.Controllers
         }
 
         [HttpGet("id")]
-        public ActionResult<MachineGet> Get(int id)
+        public ActionResult<MachineGet> Get(Guid id)
         {
             try
             {
-                return StatusCode((int)HttpStatusCode.OK, null);
+                return StatusCode((int)HttpStatusCode.OK, _machineService.Get(id));
             }
             catch (Exception ex)
             {
@@ -54,7 +57,7 @@ namespace Machines.API.Controllers
         {
             try
             {
-                return StatusCode((int)HttpStatusCode.OK, null);
+                return StatusCode((int)HttpStatusCode.OK, _machineService.Add(machine));
             }
             catch (Exception ex)
             {
@@ -67,8 +70,8 @@ namespace Machines.API.Controllers
         public ActionResult<MachineGet> Put(MachinePut machine)
         {
             try
-            {
-                return StatusCode((int)HttpStatusCode.OK, null);
+            {                
+                return StatusCode((int)HttpStatusCode.OK, _machineService.Update(machine));
             }
             catch (Exception ex)
             {
