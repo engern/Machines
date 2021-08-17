@@ -4,7 +4,7 @@
       <input v-if="editMode" v-model="newMachineName">
       <span v-if="!editMode">{{ machineName }}</span>
       <i v-if="!editMode" @click="$emit('delete-machine', machine.id)" class="fas fa-times"></i>
-      <i v-if="!editMode" @click="editMode = true; newMachineName = machine.name;" class="fas fa-pen"></i>
+      <i v-if="!editMode" @click="editMode = true; newMachineName = machineName;" class="fas fa-pen"></i>
       <i v-if="editMode" @click="editMode = false" class="fas fa-window-close"></i>
       <i v-if="editMode" @click="saveMachine()" class="fas fa-save"></i>
 
@@ -43,8 +43,6 @@ export default {
         this.machineName = this.newMachineName;
       else
         alert('Error updating machine')
-
-
       
       this.editMode = false;
 
