@@ -41,6 +41,9 @@ export default {
       })
       if(res.status === 200)
         this.machineName = this.newMachineName;
+      else
+        alert('Error updating machine')
+
 
       
       this.editMode = false;
