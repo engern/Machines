@@ -10,5 +10,6 @@ namespace Machines.Services
         IEnumerable<MachineGet> GetAll();
         MachineGet Add(MachinePost machine);
         MachineGet Update(MachinePut machine);
+        bool Delete (Guid id);
     }
 }

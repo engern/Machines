@@ -38,7 +38,7 @@ namespace Machines.API.Controllers
             }
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public ActionResult<MachineGet> Get(Guid id)
         {
             try
@@ -72,6 +72,20 @@ namespace Machines.API.Controllers
             try
             {                
                 return StatusCode((int)HttpStatusCode.OK, _machineService.Update(machine));
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<bool> Delete(Guid id)
+        {
+            try
+            {
+                return StatusCode((int)HttpStatusCode.OK, _machineService.Delete(id));
             }
             catch (Exception ex)
             {

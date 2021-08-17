@@ -55,5 +55,15 @@ namespace Machines.Services
 
             return Get(machine.Id);
         }
+
+        public bool Delete(Guid id)
+        {
+            var entity = _db.Machine.Find(id);
+            if (entity == null)
+                return false;
+
+            _db.Machine.Remove(entity);
+            return _db.SaveChanges() > 0;
+        }
     }
 }

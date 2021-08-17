@@ -1,9 +1,13 @@
 <template>
   <div class="machine">
     <h3>
-      {{ machine.name }}
-      <i @click="$emit('delete-machine', machine.id)" class="fas fa-times"></i>
-      <i @click="$emit('edit-machine', machine.id)" class="fas fa-pen"></i>
+      <input v-if="editMode" v-model="newMachineName">
+      <span v-if="!editMode">{{ machineName }}</span>
+      <i v-if="!editMode" @click="$emit('delete-machine', machine.id)" class="fas fa-times"></i>
+      <i v-if="!editMode" @click="editMode = true; newMachineName = machine.name;" class="fas fa-pen"></i>
+      <i v-if="editMode" @click="editMode = false" class="fas fa-window-close"></i>
+      <i v-if="editMode" @click="saveMachine()" class="fas fa-save"></i>
+
     </h3>
   </div>
 </template>
@@ -14,6 +18,38 @@ export default {
   props: {
     machine: Object,
   },
+  data() {
+    return {
+      editMode: false,
+      machineName : '',    
+      newMachineName :'' 
+    }
+  },
+  methods: {
+    async saveMachine() {
+    
+      var updatedMachine = {
+         id: this.machine.id,
+         name: this.newMachineName
+        };
+      const res = await fetch('api/machine', {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(updatedMachine),
+      })
+      if(res.status === 200)
+        this.machineName = this.newMachineName;
+
+      
+      this.editMode = false;
+
+     },
+  },
+  mounted: function(){
+    this.machineName = this.machine.name;
+  }
 }
 </script>
 

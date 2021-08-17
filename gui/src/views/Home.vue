@@ -34,7 +34,7 @@ export default {
       this.showAddMachine = false;
     }, 
     async deleteMachine(id) {
-      if (confirm('Are you sure?')) {
+      if (confirm('Are you sure you want to delete this machine?')) {
         const res = await fetch(`api/machine/${id}`, {
           method: 'DELETE',
         })

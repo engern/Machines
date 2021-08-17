@@ -1,7 +1,7 @@
 <template>
   <div :key="machine.id" v-for="machine in machines">
     <Machine
-      @delete-machine="$emit('delete-machine', machine.id)"
+      @delete-machine="$emit('delete-machine', machine.id)"      
       :machine="machine"
     />
   </div>
