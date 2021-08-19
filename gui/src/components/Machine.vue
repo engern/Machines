@@ -1,5 +1,5 @@
 <template>
-  <div class="machine">
+  <div class="machine" :data-machinename="machineName" :data-machineid="machine.id">
     <h3>
       <input v-if="editMode" v-model="newMachineName">
       <span v-if="!editMode">{{ machineName }}</span>

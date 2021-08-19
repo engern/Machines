@@ -2,10 +2,10 @@
   <form @submit="onSubmit" class="add-form">
     <div class="form-control">
       <label>Machine name</label>
-      <input type="text" v-model="name" name="name" placeholder="Machine name" />
+      <input type="text" v-model="name" name="name" placeholder="Machine name" id="InputMachineName" />
     </div> 
 
-    <input type="submit" value="Save Machine" class="btn btn-block" />
+    <input type="submit" value="Save Machine" class="btn btn-block" id="BtnSaveMachine" />
   </form>
 </template>
 

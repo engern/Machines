@@ -1,5 +1,5 @@
 <template>
-<button @click="showAddMachine = !showAddMachine" class="btn">Add Machine</button>
+<button @click="showAddMachine = !showAddMachine" class="btn" id="BtnAdd">Add Machine</button>
   <AddMachine v-show="showAddMachine" @add-machine="addMachine" />
   <Machines @delete-machine="deleteMachine" :machines="machines"
   />
